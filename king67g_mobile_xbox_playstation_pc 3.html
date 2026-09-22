@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>King.67g — Gaming Hub</title>
+<style>
+:root{color-scheme:dark;--bg:#080b14;--panel:#111827;--panel2:#182235;--text:#f8fafc;--muted:#a8b3c7;--blue:#3b82f6;--green:#22c55e;--purple:#a855f7;--orange:#f97316}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
+body{padding-bottom:env(safe-area-inset-bottom)}
+header{position:sticky;top:0;z-index:10;background:rgba(8,11,20,.96);backdrop-filter:blur(10px);border-bottom:1px solid #263248;padding:calc(12px + env(safe-area-inset-top)) 14px 12px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.logo{font-size:23px;font-weight:900;letter-spacing:.3px}.logo span{color:var(--blue)}
+.badge{font-size:11px;color:#dbeafe;border:1px solid #315da5;border-radius:999px;padding:6px 9px}
+main{width:min(100%,980px);margin:auto;padding:16px 12px 30px}
+.hero{background:linear-gradient(135deg,#172554,#111827 65%);border:1px solid #30446b;border-radius:20px;padding:20px 16px;margin-bottom:14px}
+h1{font-size:clamp(26px,7vw,44px);line-height:1.05;margin:0 0 10px}
+p{color:var(--muted);line-height:1.45;margin:7px 0}
+.search{width:100%;min-height:50px;border:1px solid #3a4a63;border-radius:14px;background:#0b1220;color:white;padding:0 14px;font-size:16px;margin-top:14px}
+.platforms{display:grid;grid-template-columns:1fr;gap:10px;margin:14px 0}
+.platform{display:flex;align-items:center;gap:12px;text-align:left;width:100%;min-height:72px;padding:13px;border:1px solid #334155;border-radius:16px;background:var(--panel);color:white;cursor:pointer}
+.platform.active{border-color:var(--blue);background:#142747;box-shadow:0 0 0 1px var(--blue)}
+.platform .symbol{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;font-size:23px;font-weight:900;flex:none}
+.xbox .symbol{background:#14532d;color:#86efac}.playstation .symbol{background:#312e81;color:#c4b5fd}.pc .symbol{background:#7c2d12;color:#fed7aa}
+.platform strong{display:block;font-size:16px}.platform small{display:block;color:var(--muted);margin-top:4px}
+.section-title{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:18px 2px 10px}
+.section-title h2{font-size:19px;margin:0}.count{font-size:12px;color:var(--muted)}
+.games{display:grid;grid-template-columns:1fr;gap:12px}
+.game{background:var(--panel);border:1px solid #273449;border-radius:16px;padding:14px;min-width:0}
+.game-top{display:flex;align-items:center;gap:12px}.game-icon{width:55px;height:55px;border-radius:14px;display:grid;place-items:center;font-size:27px;background:var(--panel2);flex:none}
+.game h3{font-size:16px;margin:0 0 5px}.game .meta{font-size:12px;color:var(--muted)}
+.play{display:block;width:100%;min-height:48px;margin-top:13px;border:0;border-radius:12px;background:var(--blue);color:#fff;font-size:15px;font-weight:800;cursor:pointer}
+.play:active,.platform:active{transform:scale(.98)}
+.notice{font-size:12px;color:var(--muted);padding:12px 2px}
+footer{text-align:center;color:#718096;font-size:12px;padding:10px}
+@media(min-width:560px){.platforms{grid-template-columns:repeat(3,1fr)}.games{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:850px){.games{grid-template-columns:repeat(3,1fr)}}
+
+.chat-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0 10px}
+.chat-tab{min-height:48px;border:1px solid #334155;border-radius:12px;background:#111827;color:#fff;font-weight:800}
+.chat-tab.active{background:#2563eb;border-color:#60a5fa}
+.chat-panel{background:#111827;border:1px solid #273449;border-radius:16px;padding:14px;margin-bottom:18px}
+.chat-title{margin:0 0 5px;font-size:18px}
+.chat-subtitle{font-size:12px;color:#a8b3c7;margin-bottom:12px}
+.messages{height:180px;overflow-y:auto;background:#0b1220;border-radius:12px;padding:10px;margin-bottom:10px}
+.message{background:#1e293b;border-radius:10px;padding:8px 10px;margin-bottom:8px;font-size:13px}
+.message strong{color:#93c5fd}
+.chat-row{display:grid;grid-template-columns:1fr auto;gap:8px}
+.chat-input{min-width:0;width:100%;min-height:48px;border:1px solid #3a4a63;border-radius:12px;background:#0b1220;color:#fff;padding:0 12px;font-size:16px}
+.chat-send{min-height:48px;border:0;border-radius:12px;background:#22c55e;color:#052e16;font-weight:900;padding:0 16px}
+.call-box{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.call-btn{min-height:48px;border:1px solid #3b4d68;border-radius:12px;background:#182235;color:#fff;font-weight:800}
+.call-btn:active,.chat-tab:active,.chat-send:active{transform:scale(.98)}
+@media(min-width:560px){.chat-row{grid-template-columns:1fr auto}}
+
+</style>
+</head>
+<body>
+<header><div class="top"><div class="logo">King<span>.67g</span></div><div class="badge">MOBILE GAMING HUB</div></div></header>
+<main>
+<section class="hero">
+<h1>Choose your gaming setup.</h1>
+<p>Find games for Xbox users, PlayStation users, and PC gamers. Built to work smoothly on phones.</p>
+<input id="search" class="search" type="search" placeholder="Search games..." aria-label="Search games">
+</section>
+
+<div class="section-title"><h2>Choose a platform</h2><span class="count" id="platformLabel">All platforms</span></div>
+<div class="platforms" role="group" aria-label="Gaming platforms">
+<button class="platform xbox active" data-platform="all"><span class="symbol">🎮</span><span><strong>All Platforms</strong><small>Show every game</small></span></button>
+<button class="platform xbox" data-platform="Xbox"><span class="symbol">X</span><span><strong>Xbox User</strong><small>Xbox-style gaming</small></span></button>
+<button class="platform playstation" data-platform="PlayStation"><span class="symbol">△</span><span><strong>PlayStation User</strong><small>PlayStation-style gaming</small></span></button>
+<button class="platform pc" data-platform="PC"><span class="symbol">⌘</span><span><strong>PC User</strong><small>Keyboard and mouse games</small></span></button>
+</div>
+
+
+<section class="chat-panel" aria-label="Text and group chat">
+  <h2 class="chat-title">💬 Call Text</h2>
+  <p class="chat-subtitle">Chat with everyone or create a private group chat.</p>
+
+  <div class="chat-tabs">
+    <button class="chat-tab active" data-chat="global">🌎 Global Chat</button>
+    <button class="chat-tab" data-chat="group">👥 Group Chat</button>
+  </div>
+
+  <div id="chatHeading" class="chat-subtitle">Everyone can see messages in Global Chat.</div>
+  <div id="messages" class="messages" aria-live="polite">
+    <div class="message"><strong>King.67g:</strong> Welcome to chat!</div>
+  </div>
+
+  <div class="chat-row">
+    <input id="chatInput" class="chat-input" maxlength="180" placeholder="Type a message..." aria-label="Type a message">
+    <button id="sendChat" class="chat-send">Send</button>
+  </div>
+
+  <div class="call-box">
+    <button class="call-btn" id="createGroup">➕ Create Group</button>
+    <button class="call-btn" id="callText">📞 Call Text</button>
+    <button class="call-btn" id="faceTimeBtn">📹 FaceTime</button>
+  </div>
+  <p class="notice" id="chatNotice">Demo mode: messages are saved only in this browser. Real global chat and calls need a server or chat service.</p>
+</section>
+
+<div class="section-title"><h2>Game library</h2><span class="count" id="count"></span></div>
+<div id="games" class="games"></div>
+<p class="notice">These are starter game cards and demos. Add your own legal game links in the JavaScript list.</p>
+</main>
+<footer>King.67g • Made for mobile screens</footer>
+
+<script>
+const games=[
+{name:"Neon Racer",platform:"Xbox",icon:"🏎️",desc:"Fast arcade racing demo"},
+{name:"Space Defender",platform:"Xbox",icon:"🚀",desc:"Arcade space shooter demo"},
+{name:"Dungeon Quest",platform:"PlayStation",icon:"⚔️",desc:"Fantasy adventure demo"},
+{name:"Pixel Fighters",platform:"PlayStation",icon:"🥊",desc:"Retro fighting demo"},
+{name:"Block Builder",platform:"PC",icon:"🧱",desc:"Creative building demo"},
+{name:"Keyboard Ninja",platform:"PC",icon:"⌨️",desc:"Typing challenge demo"},
+{name:"Sky Jump",platform:"Xbox",icon:"☁️",desc:"Jumping platform demo"},
+{name:"Galaxy Match",platform:"PlayStation",icon:"🌌",desc:"Puzzle matching demo"},
+{name:"Code Runner",platform:"PC",icon:"💻",desc:"Logic challenge demo"},
+{name:"Turbo Drift",platform:"Xbox",icon:"🔥",desc:"Drifting challenge demo"},
+{name:"Mystery Island",platform:"PlayStation",icon:"🏝️",desc:"Exploration demo"},
+{name:"Cyber Maze",platform:"PC",icon:"🌀",desc:"Maze challenge demo"}
+];
+
+let chatMode="global";
+const chatTabs=document.querySelectorAll(".chat-tab");
+const chatHeading=document.getElementById("chatHeading");
+const messagesEl=document.getElementById("messages");
+const chatInput=document.getElementById("chatInput");
+const chatNotice=document.getElementById("chatNotice");
+
+function addMessage(author,text){
+ const item=document.createElement("div");
+ item.className="message";
+ const strong=document.createElement("strong");
+ strong.textContent=author+": ";
+ item.appendChild(strong);
+ item.appendChild(document.createTextNode(text));
+ messagesEl.appendChild(item);
+ messagesEl.scrollTop=messagesEl.scrollHeight;
+}
+chatTabs.forEach(tab=>tab.addEventListener("click",()=>{
+ chatMode=tab.dataset.chat;
+ chatTabs.forEach(t=>t.classList.toggle("active",t===tab));
+ chatHeading.textContent=chatMode==="global"
+  ?"Everyone can see messages in Global Chat."
+  :"Only members of your selected group would see these messages.";
+ messagesEl.innerHTML="";
+ addMessage("King.67g",chatMode==="global"?"Welcome to Global Chat!":"Welcome to your Group Chat!");
+}));
+document.getElementById("sendChat").addEventListener("click",()=>{
+ const text=chatInput.value.trim();
+ if(!text)return;
+ addMessage("You",text);
+ chatInput.value="";
+});
+chatInput.addEventListener("keydown",event=>{
+ if(event.key==="Enter")document.getElementById("sendChat").click();
+});
+document.getElementById("createGroup").addEventListener("click",()=>{
+ const name=prompt("Enter a name for your group:");
+ if(name&&name.trim()){
+  chatMode="group";
+  chatTabs.forEach(t=>t.classList.toggle("active",t.dataset.chat==="group"));
+  chatHeading.textContent="Group created: "+name.trim();
+  messagesEl.innerHTML="";
+  addMessage("King.67g","Your group '"+name.trim()+"' is ready in demo mode.");
+  chatNotice.textContent="Demo group created. Add a backend to invite real users and sync messages.";
+ }
+});
+document.getElementById("callText").addEventListener("click",()=>{
+ alert("Call Text is a button placeholder. Real voice/video calling needs a secure calling service and user permissions.");
+});
+
+let selected="all";
+const gamesEl=document.getElementById("games"),searchEl=document.getElementById("search");
+function render(){
+ const query=searchEl.value.toLowerCase().trim();
+ const filtered=games.filter(g=>(selected==="all"||g.platform===selected)&&(`${g.name} ${g.platform} ${g.desc}`).toLowerCase().includes(query));
+ gamesEl.innerHTML=filtered.map(g=>`<article class="game"><div class="game-top"><div class="game-icon">${g.icon}</div><div><h3>${g.name}</h3><div class="meta">${g.platform} • ${g.desc}</div></div></div><button class="play" onclick="openGame('${g.name.replace(/'/g,"\\'")}')">Play demo</button></article>`).join("")||'<p>No games found. Try another search.</p>';
+ document.getElementById("count").textContent=`${filtered.length} games`;
+ document.getElementById("platformLabel").textContent=selected==="all"?"All platforms":selected;
+}
+function openGame(name){alert(name+" is a starter demo card. Add a real game URL to make it launch.");}
+document.querySelectorAll(".platform").forEach(button=>button.addEventListener("click",()=>{
+ selected=button.dataset.platform;
+ document.querySelectorAll(".platform").forEach(b=>b.classList.toggle("active",b===button));
+ render();
+}));
+searchEl.addEventListener("input",render);
+render();
+</script>
+</body>
+</html>
